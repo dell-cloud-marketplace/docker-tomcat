@@ -55,7 +55,7 @@ curl http://localhost:8080/
 An admin user will be created in Tomcat with a random password. To get the password, check the container logs 
 
 ```no-highlight
-sudo docker logs tomcat 
+docker logs tomcat 
 ```
 
 You will see output like the following:
