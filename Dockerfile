@@ -22,7 +22,7 @@ ADD jolokia.properties /opt/jolokia/jolokia.properties
 ADD run.sh /opt/apache-tomcat-${TOMCAT_VERSION}/bin/run.sh
 
 VOLUME ["/opt/tomcat/logs", "/opt/tomcat/work"]
-VOLUME ["/opt/tomcat/temp", "/tmp/hsperfdata_root" ]
+VOLUME ["/opt/tomcat/temp", "/tmp/hsperfdata_root"]
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
