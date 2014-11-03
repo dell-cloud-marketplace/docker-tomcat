@@ -9,7 +9,7 @@ ENV TOMCAT_VERSION 8.0.9
 ENV DEPLOY_DIR /maven
 
 # Get and Unpack Tomcat
-RUN wget http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/ \
+RUN wget http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/\
 apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/catalina.tar.gz
 RUN tar xzf /tmp/catalina.tar.gz -C /opt
 RUN ln -s /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat
