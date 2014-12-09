@@ -1,32 +1,32 @@
-FROM jolokia/java-jolokia:7
-
+FROM dell/java-base-7:1.0
 MAINTAINER Dell Cloud Market Place <Cloud_Marketplace@dell.com>
 
 RUN apt-get update 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install pwgen 
 
 ENV TOMCAT_VERSION 8.0.9
-ENV DEPLOY_DIR /maven
 
-# Get and Unpack Tomcat
+# Get and unpack Tomcat.
 RUN wget http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/\
 apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/catalina.tar.gz
 RUN tar xzf /tmp/catalina.tar.gz -C /opt
 RUN ln -s /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat
 RUN rm /tmp/catalina.tar.gz
 
-# Jolokia config
-ADD jolokia.properties /opt/jolokia/jolokia.properties
+# Make a copy of the webapps folder, in case an empty or non-existent host
+# folder is specified for the (webapps) volume. We'll test for this in run.sh.
+RUN cp -r /opt/tomcat/webapps /tmp/webapps
 
-# Startup script
-ADD run.sh /opt/apache-tomcat-${TOMCAT_VERSION}/bin/run.sh
-
-VOLUME ["/opt/tomcat/logs", "/opt/tomcat/work"]
-VOLUME ["/opt/tomcat/temp", "/tmp/hsperfdata_root"]
+# Add the startup script
+ADD run.sh /run.sh
+RUN chmod +x /run.sh
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
 
-EXPOSE 8080 8778
+EXPOSE 8080
 
-CMD /opt/apache-tomcat-${TOMCAT_VERSION}/bin/run.sh
+VOLUME ["/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/webapps"]
+
+CMD ["/run.sh"]
+

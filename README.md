@@ -1,3 +1,10 @@
+docker run -d -p 8080:8080 --name tomcat \
+-v /tomcat/logs:/opt/tomcat/logs \
+-v /tomcat/work:/opt/tomcat/work \
+-v /tomcat/webapps:/opt/tomcat/webapps \
+dell/tomcat
+
+
 # Apache Tomcat 8.0
 
 A simple docker build for installing a vanilla Tomcat 8.0 below
