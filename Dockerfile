@@ -24,7 +24,8 @@ RUN chmod +x /run.sh
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
 
-EXPOSE 8080
+# Expose Tomcat ports
+EXPOSE 8080 8778 8443
 
 VOLUME ["/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/webapps"]
 

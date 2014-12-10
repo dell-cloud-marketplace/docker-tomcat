@@ -32,4 +32,27 @@ if [ ! "$(ls -A $WEBAPPS_HOME)" ]; then
     cp -r $WEBAPPS_TMP/* $WEBAPPS_HOME
 fi
 
+# Enable SSL
+CERT_PASSWORD=`pwgen -c -n -1 12`
+
+# Generate Self-Signed SSL certificate in a new keystore
+keytool -genkey -noprompt \
+-alias selfsigned \
+-dname "CN=www.dell.com, OU=MarketPlace, O=Dell, C=US" \
+-keyalg RSA \
+-storepass $CERT_PASSWORD \
+-keypass $CERT_PASSWORD \
+-validity 360 \
+-keysize 2048 \
+-keystore keystore.jks
+
+# Uncomment SSL section in server.xml
+# and insert SSL certificate information
+sed -i '$!N;s/<!--\s*\n\s*<Connector port="8443"/<Connector port="8443" keyAlias="selfsigned" \
+               keystoreFile="\/keystore.jks" keystorePass="'$CERT_PASSWORD'"/g;P;D' \
+               /opt/apache-tomcat-${TOMCAT_VERSION}/conf/server.xml
+
+sed -i '$!N;s/clientAuth="false" sslProtocol="TLS" \/>\n\s*-->/clientAuth="false" sslProtocol="TLS" \/>/g;P;D' \
+/opt/apache-tomcat-${TOMCAT_VERSION}/conf/server.xml
+
 /opt/tomcat/bin/catalina.sh run
