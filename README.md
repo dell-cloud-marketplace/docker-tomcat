@@ -7,7 +7,7 @@ The software stack comprises the following components:
 Name              | Version                     | Description
 ------------------|-----------------------------|------------------------------
 Apache Tomcat     | 8.0.9                       | Web Server
-Java JRE          | Latest supported version of 7 (see [docker-java-base-7](https://github.com/dell-cloud-marketplace/docker-java/blob/master/docker-java-base-7)) | Oracle Java Runtime Enviroment
+Java JRE          | 7 (see [docker-java-base-7](https://github.com/dell-cloud-marketplace/docker-java/blob/master/docker-java-base-7)) | Oracle Java Runtime Enviroment
 
 ## Usage
 
