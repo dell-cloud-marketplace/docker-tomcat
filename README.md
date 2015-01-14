@@ -23,7 +23,7 @@ Start your container with:
 As follows:
 
 ```no-highlight
-docker run -d -p 8080:8080 -p 8443:8443 --name tomcat dell/tomcat
+sudo docker run -d -p 8080:8080 -p 8443:8443 --name tomcat dell/tomcat
 ```
 
 <a name="advanced-usage"></a>
@@ -51,7 +51,7 @@ sudo docker run -d \
 An admin user will be created in Tomcat with a random password. To get the password, check the container logs: 
 
 ```no-highlight
-docker logs tomcat 
+sudo docker logs tomcat 
 ```
 
 You will see output like the following:
@@ -97,7 +97,7 @@ The user name is **admin**. The password is that read from the container logs.
 #### Deploying a Sample Application
 An example application can be downloaded from Apache [website](https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/).
 
-From the administration console, scroll down to section **WAR file to deploy**. Click on the **Choose File** button, and select the download file (**sample.war**). Click on button **Deploy**. The application will be available at paths **http://localhost:8080/sample** and **http://localhost:8443/sample**.
+From the administration console, scroll down to section **WAR file to deploy**. Click on the **Choose File** button, and select the download file (**sample.war**). Click on button **Deploy**. The application will be available at paths **http://localhost:8080/sample** and **https://localhost:8443/sample**.
 
 ## Reference
 
