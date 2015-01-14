@@ -25,7 +25,7 @@ ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
 
 # Expose Tomcat ports
-EXPOSE 8080 8778 8443
+EXPOSE 8080 8443
 
 VOLUME ["/opt/tomcat/logs", "/opt/tomcat/work", "/opt/tomcat/webapps"]
 
