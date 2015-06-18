@@ -1,6 +1,7 @@
 #!/bin/sh
 
-ADMIN_PASSWORD=`pwgen -c -n -1 12`
+# If not supplied, generate a random password for the admin user.
+ADMIN_PASSWORD=${ADMIN_PASS:-$(pwgen -s 12 1)}
 
 cat >/opt/apache-tomcat-${TOMCAT_VERSION}/conf/tomcat-users.xml <<EOL
 <?xml version="1.0" encoding="utf-8"?>
@@ -32,8 +33,13 @@ if [ ! "$(ls -A $WEBAPPS_HOME)" ]; then
     cp -r $WEBAPPS_TMP/* $WEBAPPS_HOME
 fi
 
-# Enable SSL
-CERT_PASSWORD=`pwgen -c -n -1 12`
+# If not supplied, generate a random password for the certificate.
+CERT_PASSWORD=${CERT_PASS:-$(pwgen -s 12 1)}
+
+echo
+echo "========================================================================="
+echo "Using certificate password: $CERT_PASSWORD"
+echo "========================================================================"
 
 # Generate Self-Signed SSL certificate in a new keystore
 keytool -genkey -noprompt \
