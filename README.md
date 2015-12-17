@@ -33,6 +33,8 @@ Start your container with:
 - A named container (**tomcat**).
 - Ports 8080 and 8443 (Tomcat HTTP and HTTPS traffic) exposed.
 - 3 data volumes (which will survive a restart or recreation of the container). The Tomcat logs are available in **/tomcat/logs** on the host. The Tomcat work folder is **/tomcat/work**, and the web applications are in **/tomcat/webapps**, on the host.
+- A predefined password for the Tomcat admin user.
+- A predefined password for the SSL certificate.
 
 As follows:
 
@@ -43,6 +45,8 @@ sudo docker run -d \
     -v /tomcat/logs:/opt/tomcat/logs \
     -v /tomcat/work:/opt/tomcat/work \
     -v /tomcat/webapps:/opt/tomcat/webapps \
+    -e ADMIN_PASS="password" \
+    -e CERT_PASS="password" \
     --name tomcat \
     dell/tomcat
 ```
