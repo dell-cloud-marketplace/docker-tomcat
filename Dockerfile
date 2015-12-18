@@ -26,6 +26,10 @@ RUN chmod +x /run.sh
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
 
+# Environmental variables.
+ENV ADMIN_PASS ""
+ENV CERT_PASS ""
+
 # Expose Tomcat ports
 EXPOSE 8080 8443
 

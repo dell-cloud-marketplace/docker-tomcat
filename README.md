@@ -101,6 +101,13 @@ From the administration console, scroll down to section **WAR file to deploy**. 
 
 ## Reference
 
+### Environmental Variables
+
+Variable   | Default  | Description
+-----------|----------|-----------------------------------
+ADMIN_PASS | *random* | Password for Tomcat user **admin**
+CERT_PASS  | *random* | Password for the SSL certificate
+
 ### Image Details
 Based on | [ConSol/docker-appserver](https://github.com/ConSol/docker-appserver/tree/master/tomcat/8.0)
 
